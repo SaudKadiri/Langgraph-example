@@ -1,8 +1,8 @@
 from typing import TypedDict, Literal
 
 from langgraph.graph import StateGraph, END
-from my_agent.utils.nodes import call_model, should_continue, tool_node
-from my_agent.utils.state import AgentState
+from utils.nodes import call_model, should_continue, tool_node
+from utils.state import AgentState
 
 
 # Define the config
@@ -49,4 +49,8 @@ workflow.add_edge("action", "agent")
 # Finally, we compile it!
 # This compiles it into a LangChain Runnable,
 # meaning you can use it as you would any other runnable
-graph = workflow.compile()
+app = workflow.compile()
+inputs = {"messages": [("human", "Hi, what's latest Spurs score?")]}
+for output in app.stream(inputs):
+    for key, value in output.items():
+        print(f"{key}: {value}")
