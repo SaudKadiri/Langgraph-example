@@ -50,7 +50,11 @@ workflow.add_edge("action", "agent")
 # This compiles it into a LangChain Runnable,
 # meaning you can use it as you would any other runnable
 app = workflow.compile()
-inputs = {"messages": [("human", "Hi, what's latest Spurs score?")]}
+inputs = {
+    "messages": [
+        ("human", "what is my name? and tell me what was Tottenham Hotspurs's score in the last match?"),
+    ]
+}
 for output in app.stream(inputs):
     for key, value in output.items():
         print(f"{key}: {value}")
