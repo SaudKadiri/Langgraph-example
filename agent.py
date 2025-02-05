@@ -52,7 +52,7 @@ workflow.add_edge("action", "agent")
 app = workflow.compile()
 inputs = {
     "messages": [
-        ("human", "what is my name? and tell me what was Tottenham Hotspurs's score in the last match?"),
+        ("human", "who has the minimal role? I need to layoff someone. Please help me in this tough decision."),
     ]
 }
 for output in app.stream(inputs):

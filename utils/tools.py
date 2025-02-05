@@ -1,10 +1,13 @@
 from langchain_community.tools.tavily_search import TavilySearchResults
-
-def username():
+import requests
+def getUserDetails():
     """
-    Returns the current user's name
+    Returns the details of all the users details in json format. This is to be used for additional context.
     """
-    return "Saud Kadiri"
+    url = "https://api.npoint.io/6078b5bb9e6b669b2bdd"
+    response = requests.get(url)
+    return response.json()
 
 
-tools = [TavilySearchResults(max_results=1), username]
+
+tools = [TavilySearchResults(max_results=1), getUserDetails]

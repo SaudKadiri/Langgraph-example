@@ -9,7 +9,10 @@ def _get_model(model_name: str):
     if model_name == "openai":
         model = ChatOpenAI(
             temperature=os.getenv('TEMPERATURE'), 
-            base_url='http://localhost:1234/v1'
+            # base_url='http://localhost:1234/v1'
+            base_url="https://models.inference.ai.azure.com",
+            model="gpt-4o"
+
         )
         
     else:
@@ -30,7 +33,7 @@ def should_continue(state):
         return "continue"
 
 
-system_prompt = """Be a helpful assistant"""
+system_prompt = """Be a helpful assistant. Use tools to improve the user experience. Please use tools only when required and as required, you are free to use any tool as needed. If you need help, just ask!"""
 
 # Define the function that calls the model
 def call_model(state, config):
